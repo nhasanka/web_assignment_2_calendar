@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+.calendar {
+  width: 350px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.calendar-header {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  padding: 10px;
+  background: orange;
+  color: white;
+}
+.calendar-current-year {
+  font-size: 24px;
+  font-weight: bold;
+}
+.calendar-current-month {
+  font-size: 24px;
+  font-weight: bold;
+}
+.calender-year,
+.calendar-month {
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.calendar-body {
+  padding: 10px;
+  font-size: 20px;
+  height: 310px;
+}
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+  font-weight: bold;
+  padding: 0 10px;
+}
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+  /* font-weight: bold; */
+  padding: 5px 10px;
+  /* border: 1px solid #007bff; */
+}
+.day {
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+.day.weekday {
+  color: #333;
+}
+.day.sunday {
+  color: red;
+}
+.day.saturday {
+  color: blue;
+}
+.day.current {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+.day.weekday.poya {
+  background-color: green;
+  color: white;
+  /* font-weight: bold; */
+}

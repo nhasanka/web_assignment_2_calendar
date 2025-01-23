@@ -7,13 +7,7 @@ const calendarPreviousMonth = document.getElementById(
 );
 const calendarCurrentMonth = document.getElementById("calendar-current-month");
 const calendarNextMonth = document.getElementById("calendar-next-month");
-// console.log(calendarDays);
-// console.log(calendarCurrentYear);
-// console.log(calendarCurrentMonth);
-// console.log(calendarPreviousYear);
-// console.log(calendarNextYear);
-// console.log(calendarPreviousMonth);
-// console.log(calendarNextMonth);
+const goToToday = document.getElementById("go-to-today");
 
 const today = new Date();
 let currentYear = today.getFullYear();
@@ -33,9 +27,9 @@ const monthList = [
   "November",
   "December",
 ];
-const poyaStartDate = new Date(2025, 0, 14); // January 14, 2025
+const poyaStartDate = new Date(2025, 0, 13); // January 13, 2025
 
-// Function to calculate 29.5-day intervals starting from the given date
+// Function to calculate poya days
 function getPoyaDays(startDate, year, month) {
   const poyaDays = [];
   const currentMonthStart = new Date(year, month, 1);
@@ -47,12 +41,21 @@ function getPoyaDays(startDate, year, month) {
     if (poyaDate >= currentMonthStart && poyaDate.getMonth() === month) {
       poyaDays.push(poyaDate.getDate());
     }
-    // Increment by 29.5 days
+    // find next poya day
     poyaDate.setDate(poyaDate.getDate() + 29.5);
   }
 
   return poyaDays;
 }
+// Function to go to today's date
+function goToTodayHandler() {
+  currentYear = today.getFullYear();
+  currentMonth = today.getMonth();
+  loadCalendar(currentYear, currentMonth); // Reload the calendar for today's year and month
+}
+
+// Add event listener to the button
+goToToday.addEventListener("click", goToTodayHandler);
 function loadCalendar(year, month) {
   calendarDays.innerHTML = "";
   calendarCurrentMonth.textContent = monthList[month];
@@ -61,9 +64,6 @@ function loadCalendar(year, month) {
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const poyaDays = getPoyaDays(poyaStartDate, year, month);
-
-  console.log(firstDay);
-  console.log(daysInMonth);
 
   for (let i = 0; i < firstDay; i++) {
     calendarDays.innerHTML += '<div class="day"></div>';
@@ -74,10 +74,32 @@ function loadCalendar(year, month) {
     const dayOfWeek = date.getDay();
     const isToday = date.toDateString() === today.toDateString();
     const isPoya = poyaDays.includes(day);
+    const isChristmas = month === 11 && day === 25; // Check for December 25
+    const isIndependenceDay = month === 1 && day === 4; // Check for February 04
 
-    const dayClass = `day ${dayOfWeek === 0 ? "sunday" : ""} ${
-      dayOfWeek === 6 ? "saturday" : "weekday"
-    } ${isToday ? "current" : ""} ${isPoya ? "poya" : ""}`;
+    let dayClass = "day";
+
+    if (dayOfWeek === 0) {
+      dayClass += " sunday";
+    } else if (dayOfWeek === 6) {
+      dayClass += " saturday";
+    } else {
+      dayClass += " weekday";
+    }
+
+    if (isToday) {
+      dayClass += " current";
+    }
+
+    if (isPoya) {
+      dayClass += " poya";
+    }
+    if (isChristmas) {
+      dayClass += " holiday";
+    }
+    if (isIndependenceDay) {
+      dayClass += " holiday";
+    }
     calendarDays.innerHTML += `<div class="${dayClass}">${day}</div>`;
   }
 }

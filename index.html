@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
     <title>Calendar</title>
   </head>
   <body>
@@ -13,27 +17,28 @@
         <div class="calendar-header">
           <div class="calender-year">
             <div class="calendar-previous-year" id="calendar-previous-year">
-              &#10094;
+              <i class="fa-solid fa-arrow-left"></i>
             </div>
             <div class="calendar-current-year" id="calendar-current-year">
               October 2022
             </div>
             <div class="calendar-next-year" id="calendar-next-year">
-              &#10095;
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
           <div class="calendar-month">
             <div class="calendar-previous-month" id="calendar-previous-month">
-              &#10094;
+              <i class="fa-solid fa-arrow-left"></i>
             </div>
             <div class="calendar-current-month" id="calendar-current-month">
               October 2022
             </div>
             <div class="calendar-next-month" id="calendar-next-month">
-              &#10095;
+              <i class="fa-solid fa-arrow-right"></i>
             </div>
           </div>
         </div>
+        <div class="go-to-today" id="go-to-today">Go To Today</div>
         <div class="calendar-body">
           <div class="calendar-weekdays">
             <div class="calendar-weekday">Sun</div>
@@ -47,9 +52,23 @@
           <div class="calendar-days" id="calendar-days">
             <!-- Calendar days will be generated here -->
           </div>
+          <div class="highlights-meaning" id="highlights-meaning">
+            <div class="highlights-name">
+              <span class="today-box"> </span>
+              <span class="highlights-meaning-text">Today</span>
+            </div>
+            <div class="highlights-name">
+              <span class="poya-box"> </span>
+              <span class="highlights-meaning-text">Poya day</span>
+            </div>
+            <div class="highlights-name">
+              <span class="holiday-box"> </span>
+              <span class="highlights-meaning-text">Holiday</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <script src="script.js"></script>
+    <script src="./js/script.js"></script>
   </body>
 </html>
